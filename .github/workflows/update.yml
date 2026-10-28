@@ -1,0 +1,47 @@
+name: Uppdatera allmis
+
+on:
+  schedule:
+    # 03:00 UTC = 05:00 svensk sommartid, 04:00 vintertid
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-allmis
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installera beroenden
+        run: pip install -r requirements.txt
+
+      - name: Kör tester
+        run: python -m pytest -q
+
+      - name: Hämta istidsschema och skriv docs/allmis.json
+        run: python -m allmis.fetch
+
+      - name: Committa om något ändrats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/allmis.json
+          if git diff --cached --quiet; then
+            echo "Inga ändringar."
+          else
+            git commit -m "Uppdatera allmis $(TZ=Europe/Stockholm date '+%Y-%m-%d %H:%M')"
+            git push
+          fi

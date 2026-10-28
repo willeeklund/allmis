@@ -1,0 +1,220 @@
+{
+  "updated": "2026-10-28T22:22:11+01:00",
+  "source": "https://www.ikgota.se/ikgota/dokument#folder=73449",
+  "coverage": {
+    "from": "2026-10-26",
+    "to": "2026-11-15"
+  },
+  "sessions": [
+    {
+      "date": "2026-10-27",
+      "start": "11:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-10-29",
+      "start": "11:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-10-29",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-10-30",
+      "start": "11:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-10-30",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-10-31",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-10-31",
+      "start": "17:30",
+      "end": "20:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-01",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-02",
+      "start": "09:30",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is"
+    },
+    {
+      "date": "2026-11-02",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-03",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-04",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is"
+    },
+    {
+      "date": "2026-11-04",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-05",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is"
+    },
+    {
+      "date": "2026-11-05",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-06",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "med klubba"
+    },
+    {
+      "date": "2026-11-06",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-07",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-08",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-09",
+      "start": "09:30",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is"
+    },
+    {
+      "date": "2026-11-09",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-10",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-11",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is"
+    },
+    {
+      "date": "2026-11-11",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-12",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is"
+    },
+    {
+      "date": "2026-11-12",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-13",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "med klubba"
+    },
+    {
+      "date": "2026-11-13",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-14",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    },
+    {
+      "date": "2026-11-15",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": ""
+    }
+  ]
+}
