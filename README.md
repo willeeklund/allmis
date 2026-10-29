@@ -41,7 +41,7 @@ make dev
 ```
 
 Det skapar en virtuell miljö i `.venv`, hämtar det aktuella schemat till `docs/allmis.json`
-och startar en webbserver på <http://localhost:8000>. Avsluta med Ctrl+C.
+och startar en webbserver på <http://localhost:1010>. Avsluta med Ctrl+C.
 
 Andra kommandon:
 
@@ -71,8 +71,11 @@ gh workflow run update.yml
 3. Välj grenen `main` och mappen `/docs`, klicka **Save**.
 4. Efter någon minut finns sidan på `https://<användarnamn>.github.io/<repo>/`.
 
-Kontrollera också under **Settings → Actions → General → Workflow permissions** att
-**Read and write permissions** är valt, annars kan Actionen inte committa `docs/allmis.json`.
+Actionen behöver ingen extra inställning för att kunna committa `docs/allmis.json`: workflow-filen
+ber själv om skrivrätt med `permissions: contents: write`. Får körningen ändå 403 vid `git push`,
+välj **Read and write permissions** under **Settings → Actions → General → Workflow permissions**.
+
+Actionen committar varje natt, så kör `git pull --rebase` innan du ändrar något lokalt.
 
 ## Uppdatera testfilerna
 
