@@ -7,6 +7,14 @@
 <meta name="description" content="När är det allmänhetens åkning i IK Göta Bromma-hallen?">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="logga.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#AF2924" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#170d0c" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Allmis">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
@@ -156,6 +164,7 @@ const TZ = "Europe/Stockholm";
 const MAIN_HALL = "HCL Arena";
 const DAYS_AHEAD = 7;
 let data = null;
+let offline = false;
 
 const dateFmt = new Intl.DateTimeFormat("sv-SE", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
 const timeFmt = new Intl.DateTimeFormat("sv-SE", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
@@ -262,7 +271,8 @@ function renderFooter(now) {
   const updated = new Date(data.updated);
   const day = new Intl.DateTimeFormat("sv-SE", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" }).format(updated);
   p.replaceChildren(`Uppdaterad: ${day} kl ${timeFmt.format(updated)}`);
-  if (now - updated > 2 * 86400000) p.append(" ", el("span", { class: "stale" }, "(kan vara gammalt)"));
+  if (offline) p.append(" ", el("span", { class: "stale" }, "(ingen internet – sparat schema)"));
+  else if (now - updated > 2 * 86400000) p.append(" ", el("span", { class: "stale" }, "(kan vara gammalt)"));
   if (data.source) document.getElementById("source").href = data.source;
 }
 
@@ -280,6 +290,7 @@ async function load() {
     const res = await fetch("allmis.json", { cache: "no-store" });
     if (!res.ok) throw new Error(res.status);
     data = await res.json();
+    offline = res.headers.get("X-Allmis-Offline") === "1";
     render();
   } catch (e) {
     if (data) return;
@@ -291,6 +302,28 @@ async function load() {
       el("div", { class: "sub" }, "Kolla på ikgota.se i stället"),
     );
   }
+}
+
+const RELOAD_AFTER_MS = 30 * 60 * 1000;
+let hiddenAt = null;
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    hiddenAt = Date.now();
+    return;
+  }
+  if (hiddenAt && Date.now() - hiddenAt > RELOAD_AFTER_MS) {
+    location.reload();
+    return;
+  }
+  render();
+  load();
+  navigator.serviceWorker?.getRegistration().then((reg) => reg?.update());
+});
+window.addEventListener("online", load);
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 
 load();

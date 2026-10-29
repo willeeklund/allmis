@@ -32,6 +32,17 @@ Sidan visar "(kan vara gammalt)" om datan är äldre än två dygn.
 - Veckonumret tas från filnamnet ("Vecka 44.xlsx"). Året väljs så att veckan hamnar närmast dagens datum.
 - Pass samma dag i samma hall som ligger direkt efter varandra slås ihop.
 
+### Som app på mobilen (PWA)
+
+Sidan kan läggas till på hemskärmen: i Safari på iPhone via **Dela → Lägg till på hemskärmen**,
+i Chrome på Android via menyn **⋮ → Installera app**. Den öppnas då i helskärm med IK Göta-loggan som ikon.
+
+- `docs/sw.js` (service worker) hämtar alltid sidan och `allmis.json` från nätet först. Den sparade kopian
+  används bara när det saknas internet, och då står det "(ingen internet – sparat schema)" i sidfoten.
+- När appen öppnas igen från bakgrunden hämtas ny data direkt. Har den legat i bakgrunden mer än
+  30 minuter laddas hela sidan om, så att även nya versioner av sidan kommer med.
+- Ikonerna ligger i `docs/icons/` och är gjorda från `docs/logga.png`. Manifestet är `docs/manifest.webmanifest`.
+
 ## Köra lokalt
 
 Kräver Python 3.9 eller senare och `make`.

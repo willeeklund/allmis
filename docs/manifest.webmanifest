@@ -1,0 +1,17 @@
+{
+  "name": "Allmis i Stora mossen",
+  "short_name": "Allmis",
+  "description": "När är det allmänhetens åkning i IK Göta Bromma-hallen?",
+  "lang": "sv",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbf7f6",
+  "theme_color": "#AF2924",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
