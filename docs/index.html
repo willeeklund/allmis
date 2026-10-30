@@ -144,6 +144,9 @@
   footer p { margin: 6px 0; }
   footer a { color: var(--link); font-weight: 600; }
   .stale { color: var(--stale); font-weight: 600; }
+  .qr { margin: 28px auto 8px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .qr img { width: 180px; height: 180px; padding: 10px; background: #fff; border-radius: 16px; border: 3px solid var(--line); }
+  .qr p { margin: 0; font-weight: 600; color: var(--text); }
 </style>
 </head>
 <body>
@@ -157,6 +160,11 @@
   <footer>
     <p id="updated"></p>
     <p>Tiderna kommer från istidsschemat på <a id="source" href="https://www.ikgota.se/ikgota/dokument#folder=73449" rel="noopener">ikgota.se</a>. Kolla där om du vill vara helt säker.</p>
+    <figure class="qr">
+      <img src="qr.svg" alt="QR-kod med länk till den här sidan">
+      <p>Skanna för att öppna den här sidan</p>
+      <a href="https://willeeklund.github.io/allmis/">willeeklund.github.io/allmis</a>
+    </figure>
   </footer>
 </main>
 <script>
