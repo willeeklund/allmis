@@ -2,8 +2,8 @@ name: Uppdatera allmis
 
 on:
   schedule:
-    # 03:00 UTC = 05:00 svensk sommartid, 04:00 vintertid
-    - cron: "0 3 * * *"
+    # 08:15 svensk tid: 06:15 UTC på sommaren, 07:15 UTC på vintern
+    - cron: "15 7 * * *"
   workflow_dispatch:
 
 permissions:
