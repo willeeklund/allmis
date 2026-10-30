@@ -13,3 +13,7 @@ htmlcov/
 
 .claude/settings.local.json
 docs/.allmis-*.json
+
+xcuserdata/
+*.xcuserstate
+DerivedData/
