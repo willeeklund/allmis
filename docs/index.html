@@ -224,6 +224,8 @@ function renderHero(now, today) {
       el("div", { class: "sub" }, `Du hinner åka till ${current.end}`),
     );
     if (extra(current)) hero.append(el("div", { class: "note" }, extra(current)));
+    const later = todays.filter((s) => s.start > current.start);
+    if (later.length) hero.append(el("div", { class: "sub" }, `Sen igen: ${later.map(dash).join(", ")}`));
     return;
   }
 
