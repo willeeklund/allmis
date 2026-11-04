@@ -11,20 +11,20 @@ TODAY = dt.date(2026, 10, 28)
 
 
 def rows(schedule):
-    return [(s.date.isoformat(), s.start, s.end, s.hall, s.note) for s in schedule.sessions]
+    return [(s.date.isoformat(), s.start, s.end, s.hall, s.note, s.kind) for s in schedule.sessions]
 
 
 def test_week_44_autumn_break_and_open_ice():
     sch = parse_workbook(FIXTURES / "Vecka 44.xlsx", today=TODAY)
     assert rows(sch) == [
-        ("2026-10-27", "11:00", "14:00", "HCL Arena", ""),
-        ("2026-10-29", "11:00", "14:00", "HCL Arena", ""),
-        ("2026-10-29", "15:00", "16:00", "HCL Arena", ""),
-        ("2026-10-30", "11:00", "14:00", "HCL Arena", ""),
-        ("2026-10-30", "15:00", "16:00", "HCL Arena", ""),
-        ("2026-10-31", "12:00", "14:00", "HCL Arena", ""),
-        ("2026-10-31", "17:30", "20:00", "HCL Arena", ""),
-        ("2026-11-01", "12:00", "14:00", "HCL Arena", ""),
+        ("2026-10-27", "11:00", "14:00", "HCL Arena", "", "allmis"),
+        ("2026-10-29", "11:00", "14:00", "HCL Arena", "", "allmis"),
+        ("2026-10-29", "15:00", "16:00", "HCL Arena", "", "open-ice"),
+        ("2026-10-30", "11:00", "14:00", "HCL Arena", "", "allmis"),
+        ("2026-10-30", "15:00", "16:00", "HCL Arena", "", "open-ice"),
+        ("2026-10-31", "12:00", "14:00", "HCL Arena", "", "allmis"),
+        ("2026-10-31", "17:30", "20:00", "HCL Arena", "", "open-ice"),
+        ("2026-11-01", "12:00", "14:00", "HCL Arena", "", "allmis"),
     ]
     assert sch.first_day == dt.date(2026, 10, 26)
     assert sch.last_day == dt.date(2026, 11, 1)
@@ -33,15 +33,15 @@ def test_week_44_autumn_break_and_open_ice():
 def test_week_45_time_in_text_and_notes():
     sch = parse_workbook(FIXTURES / "Vecka 45.xlsx", today=TODAY)
     assert rows(sch)[:4] == [
-        ("2026-11-02", "09:30", "14:30", "HCL Arena", "delad is"),
-        ("2026-11-02", "15:00", "16:00", "HCL Arena", ""),
-        ("2026-11-03", "15:00", "16:00", "HCL Arena", ""),
-        ("2026-11-04", "08:00", "14:30", "HCL Arena", "delad is"),
+        ("2026-11-02", "09:30", "14:30", "HCL Arena", "delad is", "allmis"),
+        ("2026-11-02", "15:00", "16:00", "HCL Arena", "", "open-ice"),
+        ("2026-11-03", "15:00", "16:00", "HCL Arena", "", "open-ice"),
+        ("2026-11-04", "08:00", "14:30", "HCL Arena", "delad is", "allmis"),
     ]
-    assert ("2026-11-06", "08:00", "14:30", "HCL Arena", "med klubba") in rows(sch)
+    assert ("2026-11-06", "08:00", "14:30", "HCL Arena", "med klubba", "allmis") in rows(sch)
     assert rows(sch)[-2:] == [
-        ("2026-11-07", "12:00", "14:00", "HCL Arena", ""),
-        ("2026-11-08", "12:00", "14:00", "HCL Arena", ""),
+        ("2026-11-07", "12:00", "14:00", "HCL Arena", "", "allmis"),
+        ("2026-11-08", "12:00", "14:00", "HCL Arena", "", "allmis"),
     ]
 
 
@@ -58,7 +58,7 @@ def test_multi_week_file():
 def test_open_ice_back_to_back_is_merged():
     sch = parse_workbook(FIXTURES / "Istider-vecka-16-april-2026.xlsx", today=TODAY)
     assert rows(sch) == [
-        (f"2026-04-{d}", "14:00", "16:00", "HCL Arena", "") for d in range(13, 18)
+        (f"2026-04-{d}", "14:00", "16:00", "HCL Arena", "", "open-ice") for d in range(13, 18)
     ]
 
 
@@ -108,4 +108,16 @@ def test_merge_overlapping_and_duplicates():
     assert [(s.start, s.end, s.hall, s.note) for s in merged] == [
         ("12:00", "13:00", "A-Hallen", ""),
         ("12:00", "15:00", "HCL Arena", "med klubba"),
+    ]
+
+
+def test_allmis_and_open_ice_are_not_merged():
+    d = dt.date(2026, 11, 4)
+    merged = merge_sessions([
+        Session(d, "08:00", "15:00", "HCL Arena"),
+        Session(d, "15:00", "16:00", "HCL Arena", kind="open-ice"),
+    ])
+    assert [(s.start, s.end, s.kind) for s in merged] == [
+        ("08:00", "15:00", "allmis"),
+        ("15:00", "16:00", "open-ice"),
     ]

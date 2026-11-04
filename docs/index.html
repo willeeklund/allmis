@@ -138,6 +138,21 @@
   li .t { display: block; font-size: 1.55rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
   li .n { display: block; font-size: .9rem; font-weight: 500; color: var(--muted); }
   li.has { border-color: var(--yes); border-width: 3px; }
+  .kind {
+    display: inline-block;
+    margin: 2px 0 6px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .kind.allmis { background: var(--ik-red); color: #fff; }
+  .kind.open-ice { background: var(--ik-gold); color: #221615; }
+  .hero .kind { font-size: 1rem; margin: 0 0 8px; }
+  .hero .kind.allmis { background: rgba(255,255,255,.22); color: inherit; }
+  .hero.now .kind.allmis { background: var(--ik-red); color: #fff; }
+  .hero.yes .kind.open-ice { background: #f3e2b3; }
   li.none .times { color: var(--muted); font-size: 1.1rem; font-weight: 500; }
 
   footer { margin-top: 32px; text-align: center; font-size: .95rem; color: var(--muted); }
@@ -186,6 +201,13 @@ const addDays = (iso, n) => new Date(asDate(iso).getTime() + n * 86400000).toISO
 const daysBetween = (a, b) => Math.round((asDate(b) - asDate(a)) / 86400000);
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const dash = (s) => `${s.start}–${s.end}`;
+const KINDS = {
+  "allmis": { name: "Allmis", who: "för alla", tag: "Allmis – för alla" },
+  "open-ice": { name: "Åkning för Göta-spelare", who: "bara Göta-spelare", tag: "Bara för Göta-spelare" },
+};
+const kindOf = (s) => KINDS[s.kind] ? s.kind : "allmis";
+const kindTag = (s) => el("span", { class: `kind ${kindOf(s)}` }, KINDS[kindOf(s)].tag);
+const dayTitle = (sessions) => KINDS[sessions.some((s) => kindOf(s) === "allmis") ? "allmis" : "open-ice"].name;
 
 function dayName(iso, today) {
   const diff = daysBetween(today, iso);
@@ -219,21 +241,22 @@ function renderHero(now, today) {
     hero.classList.add("now");
     hero.append(
       el("span", { class: "label" }, "Just nu!"),
-      el("div", { class: "what" }, "Allmis pågår ⛸️"),
+      el("div", { class: "what" }, `${KINDS[kindOf(current)].name} pågår ⛸️`),
       el("div", { class: "big" }, dash(current)),
+      kindTag(current),
       el("div", { class: "sub" }, `Du hinner åka till ${current.end}`),
     );
     if (extra(current)) hero.append(el("div", { class: "note" }, extra(current)));
     const later = todays.filter((s) => s.start > current.start);
-    if (later.length) hero.append(el("div", { class: "sub" }, `Sen igen: ${later.map(dash).join(", ")}`));
+    if (later.length) hero.append(el("div", { class: "sub" }, `Sen igen: ${later.map((s) => `${dash(s)} (${KINDS[kindOf(s)].who})`).join(", ")}`));
     return;
   }
 
   if (upcoming.length) {
     hero.classList.add("yes");
-    hero.append(el("span", { class: "label" }, "Idag"), el("div", { class: "what" }, "Allmis ⛸️"));
+    hero.append(el("span", { class: "label" }, "Idag"), el("div", { class: "what" }, `${dayTitle(todays)} ⛸️`));
     for (const s of todays) {
-      hero.append(el("div", { class: "big" + (s.end <= hhmm ? " past" : "") }, dash(s)));
+      hero.append(el("div", { class: "big" + (s.end <= hhmm ? " past" : "") }, dash(s)), kindTag(s));
     }
     const notes = [...new Set(upcoming.map(extra).filter(Boolean))];
     if (notes.length) hero.append(el("div", { class: "note" }, notes.join(" · ")));
@@ -248,7 +271,7 @@ function renderHero(now, today) {
       : todays.length ? "Allmis är slut för idag" : "Ingen allmis idag"),
   );
   if (next) {
-    hero.append(el("div", { class: "sub" }, `Nästa: ${dayName(next.date, today)} kl ${next.start}`));
+    hero.append(el("div", { class: "sub" }, `Nästa: ${dayName(next.date, today)} kl ${next.start} (${KINDS[kindOf(next)].who})`));
   } else {
     hero.append(el("div", { class: "sub" }, "Nästa allmis är inte inlagd än"));
   }
@@ -266,7 +289,7 @@ function renderWeek(today) {
     const times = el("div", { class: "times" });
     if (sessions.length) {
       for (const s of sessions) {
-        times.append(el("span", { class: "t" }, dash(s)));
+        times.append(el("span", { class: "t" }, dash(s)), kindTag(s));
         if (extra(s)) times.append(el("span", { class: "n" }, extra(s)));
       }
     } else {

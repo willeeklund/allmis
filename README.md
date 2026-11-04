@@ -8,11 +8,12 @@ Sidan är helt statisk och publiceras med GitHub Pages från mappen `docs/`.
 
 ## Så fungerar det
 
-1. En GitHub Action körs varje natt (03:00 UTC, alltså ca 05:00 på sommaren och 04:00 på vintern).
+1. En GitHub Action körs varje morgon kl 06:15 och 07:15 UTC, så att en av körningarna alltid blir 08:15 svensk tid.
 2. Skriptet `allmis/fetch.py` läser [dokumentsidan på ikgota.se](https://www.ikgota.se/ikgota/dokument#folder=73449),
    letar upp mappen **Istidsschema** och laddar ner alla `.xlsx`-filer där (en per vecka, ibland flera veckor per fil).
 3. `allmis/parser.py` hittar alla pass som heter "Allmis" eller "Open ice" i flikarna med tidsrutnät
-   (HCL Arena och A-Hallen) och räknar ut datum och tider.
+   (HCL Arena och A-Hallen) och räknar ut datum och tider. Allmis är allmänhetens åkning och öppen för alla,
+   medan open ice bara är för medlemmar i IK Göta. Sidan visar vilket det är vid varje tid.
 4. Resultatet skrivs till `docs/allmis.json`, som `docs/index.html` läser.
 5. Actionen committar filen. Eftersom tidsstämpeln `updated` ändras varje gång blir det en commit per körning,
    vilket också hindrar GitHub från att stänga av det schemalagda flödet efter 60 dagar utan aktivitet.

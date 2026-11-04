@@ -8,6 +8,7 @@ from pathlib import Path
 import openpyxl
 
 ALLMIS = re.compile(r"allmis|open[\s-]?ice", re.IGNORECASE)
+OPEN_ICE = re.compile(r"open[\s-]?ice", re.IGNORECASE)
 TIME_RANGE = re.compile(r"(\d{1,2})[.:](\d{2})\s*[-–]\s*(\d{1,2})[.:](\d{2})")
 WEEK = re.compile(r"vecka(?:20|[\s_-])*(\d{1,2})(?!\d)", re.IGNORECASE)
 YEAR = re.compile(r"(?<!\d)(20\d{2})(?!\d)")
@@ -26,6 +27,7 @@ class Session:
     end: str
     hall: str
     note: str = ""
+    kind: str = "allmis"
 
     def to_dict(self) -> dict:
         return {
@@ -34,6 +36,7 @@ class Session:
             "end": self.end,
             "hall": self.hall,
             "note": self.note,
+            "kind": self.kind,
         }
 
 
@@ -146,18 +149,25 @@ def _parse_sheet(ws, start: dt.date) -> tuple[list[Session], list[dt.date]]:
             else:
                 begin, finish = to_minutes(col), to_minutes(end_col + 1)
             sessions.append(
-                Session(cursor, _minutes_to_hhmm(begin), _minutes_to_hhmm(finish), hall, _note(cell.value))
+                Session(
+                    cursor,
+                    _minutes_to_hhmm(begin),
+                    _minutes_to_hhmm(finish),
+                    hall,
+                    _note(cell.value),
+                    "open-ice" if OPEN_ICE.search(cell.value) else "allmis",
+                )
             )
     return sessions, days
 
 
 def merge_sessions(sessions: list[Session]) -> list[Session]:
     merged: list[Session] = []
-    for s in sorted(set(sessions), key=lambda s: (s.date, s.hall, s.start, s.end)):
+    for s in sorted(set(sessions), key=lambda s: (s.date, s.hall, s.kind, s.start, s.end)):
         prev = merged[-1] if merged else None
-        if prev and prev.date == s.date and prev.hall == s.hall and s.start <= prev.end:
+        if prev and (prev.date, prev.hall, prev.kind) == (s.date, s.hall, s.kind) and s.start <= prev.end:
             notes = [n for n in dict.fromkeys([prev.note, s.note]) if n]
-            merged[-1] = Session(prev.date, prev.start, max(prev.end, s.end), prev.hall, ", ".join(notes))
+            merged[-1] = Session(prev.date, prev.start, max(prev.end, s.end), prev.hall, ", ".join(notes), prev.kind)
         else:
             merged.append(s)
     return sorted(merged, key=lambda s: (s.date, s.start, s.hall))
