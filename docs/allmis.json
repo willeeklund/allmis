@@ -1,99 +1,11 @@
 {
-  "updated": "2026-11-08T15:17:26+01:00",
+  "updated": "2026-11-09T18:29:14+01:00",
   "source": "https://www.ikgota.se/ikgota/dokument#folder=73449",
   "coverage": {
-    "from": "2026-11-02",
+    "from": "2026-11-09",
     "to": "2026-11-15"
   },
   "sessions": [
-    {
-      "date": "2026-11-02",
-      "start": "09:30",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "delad is",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-02",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-03",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-04",
-      "start": "08:00",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "delad is",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-04",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-05",
-      "start": "08:00",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "delad is",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-05",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-06",
-      "start": "08:00",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "med klubba",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-06",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-07",
-      "start": "12:00",
-      "end": "14:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-08",
-      "start": "12:00",
-      "end": "14:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "allmis"
-    },
     {
       "date": "2026-11-09",
       "start": "09:30",
