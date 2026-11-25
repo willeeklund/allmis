@@ -1,99 +1,11 @@
 {
-  "updated": "2026-11-24T19:53:41+01:00",
+  "updated": "2026-11-25T18:58:04+01:00",
   "source": "https://www.ikgota.se/ikgota/dokument#folder=73449",
   "coverage": {
-    "from": "2026-11-16",
-    "to": "2026-11-29"
+    "from": "2026-11-23",
+    "to": "2026-12-06"
   },
   "sessions": [
-    {
-      "date": "2026-11-16",
-      "start": "09:30",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "delad is",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-16",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-17",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-18",
-      "start": "08:00",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "delad is",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-18",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-19",
-      "start": "08:00",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "delad is",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-19",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-20",
-      "start": "08:00",
-      "end": "14:30",
-      "hall": "HCL Arena",
-      "note": "med klubba",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-20",
-      "start": "15:00",
-      "end": "16:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "open-ice"
-    },
-    {
-      "date": "2026-11-21",
-      "start": "12:00",
-      "end": "14:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "allmis"
-    },
-    {
-      "date": "2026-11-22",
-      "start": "12:00",
-      "end": "14:00",
-      "hall": "HCL Arena",
-      "note": "",
-      "kind": "allmis"
-    },
     {
       "date": "2026-11-23",
       "start": "09:30",
@@ -176,6 +88,94 @@
     },
     {
       "date": "2026-11-29",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "allmis"
+    },
+    {
+      "date": "2026-11-30",
+      "start": "09:30",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is",
+      "kind": "allmis"
+    },
+    {
+      "date": "2026-11-30",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "open-ice"
+    },
+    {
+      "date": "2026-12-01",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "open-ice"
+    },
+    {
+      "date": "2026-12-02",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is",
+      "kind": "allmis"
+    },
+    {
+      "date": "2026-12-02",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "open-ice"
+    },
+    {
+      "date": "2026-12-03",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "delad is",
+      "kind": "allmis"
+    },
+    {
+      "date": "2026-12-03",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "open-ice"
+    },
+    {
+      "date": "2026-12-04",
+      "start": "08:00",
+      "end": "14:30",
+      "hall": "HCL Arena",
+      "note": "med klubba",
+      "kind": "allmis"
+    },
+    {
+      "date": "2026-12-04",
+      "start": "15:00",
+      "end": "16:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "open-ice"
+    },
+    {
+      "date": "2026-12-05",
+      "start": "12:00",
+      "end": "14:00",
+      "hall": "HCL Arena",
+      "note": "",
+      "kind": "allmis"
+    },
+    {
+      "date": "2026-12-06",
       "start": "12:00",
       "end": "14:00",
       "hall": "HCL Arena",
